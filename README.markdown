@@ -20,7 +20,7 @@ fully meet each goal.
 ### Routing
 
 Routing is achieved by a mix of pure path based routing
-(i.e. Sinatra) and a simple mounting approach.
+(i.e. Sinatra), Merb routing and a simple mounting approach.
 
 
 ### Usage
