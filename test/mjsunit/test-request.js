@@ -31,7 +31,7 @@ function onLoad() {
   assertMatch(request.params, {page: '2', name: 'ray'});
   assertEquals(request.method, 'POST');
   
-  request.setCaptured({"foo": "bar"});
+  request.captured = {"foo": "bar"};
   assertEquals("bar", request.captured.foo);
   
   request.status = 200;

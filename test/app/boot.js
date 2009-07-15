@@ -5,14 +5,12 @@ var post = require("post.js");
 function onLoad() {
   Logger.setLevel("WARN");
   
-  Logger.info("Creating Application");
   var juice = Juice.createApp();
   juice.LOG = Logger;
+  juice.rootDir = node.path.dirname(__filename);
   
-  Logger.info("Mounting /post");
   juice.mount("/post", post);
     
-  Logger.info("Booting Application");
-  juice.boot();
+  juice.boot({port: 4000});
   Logger.warn("Application Booted");
 }

@@ -1,31 +1,23 @@
 exports.resource = function() {
-  // var LOG = this.application.logger;
-  
-  this.get("/", function() {
-    this.application.LOG.info("Handling / request post.js");
-    this.status = 200;
-    this.sendHeader();
+  get("/", function() {
+    application.LOG.info("Handling / request post.js");
     
-    this.puts("Hello World");
-    
-    this.finish();
+    puts("Hello Index.");
+    finish();
   });
   
-  this.get("/:id", function(id) {
-    this.status = 200;
-    this.sendHeader();
-    
-    this.puts("You are looking for the id: " + id);
-    
-    this.finish();
+  get("/:id", function(id) {
+    // ejs helper will send headers and finish the request automatically
+    //   If you do not want this to happen and you wish to manually send
+    //   headers and finish the request (maybe due to a streaming response)
+    //   add {autoFinish: false} as a second param.
+    //
+    //      ejs("post/show", {autoFinish: false});
+    //
+    ejs("post/show");
   });
   
-  this.get("/by-date/:year(/:month(/:day))", function(year, month, day) {
-    this.status = 200;
-    this.sendHeader();
-    
-    this.puts("You are looking by the date: " + year + "/" + (month || "??") + "/" + (day || "??"));
-    
-    this.finish();
+  get("/by-date/:year(/:month(/:day))", function(year, month, day) {    
+    ejs("post/by-date");
   });
 }
