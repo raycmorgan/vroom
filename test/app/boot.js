@@ -11,6 +11,6 @@ function onLoad() {
   
   juice.mount("/post", post);
     
-  juice.boot({port: 4000});
+  juice.boot({port: 8000});
   Logger.warn("Application Booted");
 }
