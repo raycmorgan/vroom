@@ -1,6 +1,6 @@
 exports.resource = function() {
   get("/", function() {
-    puts("Welcome to Juice!");
+    puts("Welcome to Vroom!");
     finish();
   });
   
