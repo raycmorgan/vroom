@@ -1,5 +1,5 @@
 include("mjsunit.js");
-var Route = require("../../lib/juice/route.js");
+var Route = require("../../lib/vroom/route.js");
 
 function onLoad() {  
   var routeMap = [

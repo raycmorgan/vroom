@@ -1,6 +1,6 @@
 include("mjsunit.js");
-var Resource = require("../../lib/juice/resource.js");
-var Request = require("../../lib/juice/request.js");
+var Resource = require("../../lib/vroom/resource.js");
+var Request = require("../../lib/vroom/request.js");
 var MockReq = require("mock/mock-req.js");
 var MockRes = require("mock/mock-res.js");
 

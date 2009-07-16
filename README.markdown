@@ -1,7 +1,7 @@
 Juice - A simple resource web framework for Node.js
 ===================================================
 
-Juice's goals are to be an easy to use web framework
+Vroom's goals are to be an easy to use web framework
 for building scalable HTTP oriented applications.
 
 
@@ -29,7 +29,7 @@ For a demo app see: `test/app/`
 
 Here is a totally simple example app
 
-    var Juice = require("lib/juice.js");
+    var vroom = require("lib/vroom.js");
 
     var resource = function() {
       get("/(:name)", function(name) {
@@ -40,7 +40,7 @@ Here is a totally simple example app
 
     function onLoad() {
       // Create a new Application
-      var app = Juice.createApp();
+      var app = vroom.createApp();
 
       // This is were we mount our resource from above
       // we are going to mount this on "/"
