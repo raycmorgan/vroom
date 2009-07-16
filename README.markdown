@@ -1,4 +1,4 @@
-Juice - A simple resource web framework for Node.js
+Vroom - A simple resource web framework for Node.js
 ===================================================
 
 Vroom's goals are to be an easy to use web framework
