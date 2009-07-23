@@ -13,6 +13,7 @@ exports.resource = function() {
     //
     //      ejs("post/show", {autoFinish: false});
     //
+    addHeader("Content-Type", "text/html");
     ejs("post/show");
   });
   
