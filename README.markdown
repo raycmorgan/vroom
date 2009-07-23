@@ -33,8 +33,7 @@ Here is a totally simple example app
 
     var resource = function() {
       get("/(:name)", function(name) {
-        puts("Hello: " + (name || "unknown"));
-        finish();
+        return "Hello: " + (name || "unknown");
       });
     }
 
