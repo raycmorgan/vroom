@@ -1,7 +1,6 @@
 exports.resource = function() {
   get("/", function() {
-    puts("Welcome to Vroom!");
-    finish();
+    return "Welcome to Vroom!";
   });
   
   get("/favicon.ico", function() {

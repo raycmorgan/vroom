@@ -2,8 +2,7 @@ exports.resource = function() {
   get("/", function() {
     application.LOG.info("Handling / request post.js");
     
-    puts("Hello Index.");
-    finish();
+    return "Hello Index.";
   });
   
   get("/:id", function(id) {
