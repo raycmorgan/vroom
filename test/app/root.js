@@ -1,6 +1,13 @@
 exports.resource = function() {
   get("/", function() {
-    return "Welcome to Vroom!";
+    if (params.second == "true")
+      return PASS;
+    
+    return "Welcome to Vroom!\n";
+  });
+  
+  get("/", function() {
+    return "Second Root\n";
   });
   
   get("/favicon.ico", function() {
