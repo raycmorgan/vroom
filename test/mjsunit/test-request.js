@@ -40,7 +40,7 @@ function onLoad() {
   request.removeHeader("Remove-Me"); // to test removing the header.
   request.sendHeader();
   
-  request.puts("Hello World");
+  request.write("Hello World");
   
   request.finish();
   assertTrue(request.finished, "request.finished");
