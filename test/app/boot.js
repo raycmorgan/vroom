@@ -4,6 +4,9 @@ var vroom = require("../../lib/vroom.js");
 var root = require("root.js");
 var post = require("post.js");
 
+// Get the error handler
+var errors = require("errors.js");
+
 function onLoad() { 
   var app = vroom.createApp();
   
@@ -12,6 +15,8 @@ function onLoad() {
   
   app.mount("/", root);
   app.mount("/post", post);
+  
+  app.errorHandler(errors);
     
   app.boot({port: 8000});
   app.LOG.warn("Application Booted");
