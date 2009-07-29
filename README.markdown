@@ -36,7 +36,7 @@ Here is a totally simple example app
         return "Welcome to Vroom!";
       });
     
-      get("/person/(:name)", function(name) {
+      get("/person(/:name)", function(name) {
         return "Hello: " + (name || "unknown");
       });
       
