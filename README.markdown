@@ -32,8 +32,18 @@ Here is a totally simple example app
     var vroom = require("lib/vroom.js");
 
     var resource = function() {
-      get("/(:name)", function(name) {
+      get("/", function() {
+        return "Welcome to Vroom!";
+      });
+    
+      get("/person/(:name)", function(name) {
         return "Hello: " + (name || "unknown");
+      });
+      
+      get("/stream", function() {
+        write("Hello ");
+        write("World!");
+        finish();
       });
     }
 
@@ -53,4 +63,11 @@ Since the onLoad (mounting/booting/etc) is separate from
 the resources, this can (and usually is) be in its own
 file. See the test/app for a more detailed example with
 templates and such.
+
+To boot that:
+
+    $ node that-file.js
+
+Note that you need [Node.js](http://tinyclouds.org/node/) installed prior to running the
+application.
 
