@@ -12,6 +12,7 @@ function onLoad() {
   
   app.LOG.setLevel("INFO");
   app.root = __filename;
+  app.reloadTemplates = true;
   
   app.mount("/", root);
   app.mount("/post", post);
