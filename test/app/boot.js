@@ -12,11 +12,12 @@ function onLoad() {
   
   app.LOG.setLevel("INFO");
   app.root = __filename;
+  app.reloadTemplates = true;
   
   app.mount("/", root);
   app.mount("/post", post);
   
-  app.errorHandler(errors);
+  app.errorHandler(errors.handlers);
     
   app.boot({port: 8000});
   app.LOG.warn("Application Booted");
