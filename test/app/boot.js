@@ -11,8 +11,11 @@ function onLoad() {
   var app = vroom.createApp();
   
   app.LOG.setLevel("INFO");
-  app.root = __filename;
-  app.reloadTemplates = true;
+  
+  app.configure({
+    root: __filename,
+    reloadTemplates: true
+  });
   
   app.mount("/", root);
   app.mount("/post", post);
