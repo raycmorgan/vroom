@@ -1,6 +1,16 @@
 Vroom - A simple resource web framework for Node.js
 ===================================================
 
+------------------------------------------------------------
+
+## WARNING - Currently going through a large rework.
+
+This reworking might break some/none/all of the current API.
+Expect the reworked release within a week or two depending
+on the time I have to work on it.
+
+------------------------------------------------------------
+
 Vroom's goals are to be an easy to use web framework
 for building scalable HTTP oriented applications.
 
