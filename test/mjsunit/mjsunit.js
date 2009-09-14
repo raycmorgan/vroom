@@ -33,6 +33,7 @@
 
 function MjsUnitAssertionError(message) {
   this.message = message;
+  Error.captureStackTrace(this, fail);
 }
 
 MjsUnitAssertionError.prototype.toString = function () {
@@ -133,7 +134,7 @@ exports.assertThrows = function (code) {
   } catch (e) {
     // Do nothing.
   }
-  if (!threwException) { 
+  if (!threwException) {
     exports.assertTrue(false, "did not throw exception");
   }
 };
