@@ -1,27 +1,21 @@
-var vroom = require("../../lib/vroom.js");
+require('../../lib/vroom.js');
+require('../../lib/vroom/plugin/magic_scope.js');
+require('../../lib/vroom/plugin/ejs.js');
 
-// Gather the resources
-var root = require("root.js");
-var post = require("post.js");
+var app = new Vroom.Application();
 
-// Get the error handler
-var errors = require("errors.js");
+Vroom.Config.printOptions();
 
-function onLoad() { 
-  var app = vroom.createApp();
-  
-  app.LOG.setLevel("INFO");
-  
-  app.configure({
-    root: __filename,
-    reloadTemplates: true
-  });
-  
-  app.mount("/", root);
-  app.mount("/post", post);
-  
-  app.errorHandler(errors.handlers);
-    
-  app.boot({port: 8000});
-  app.LOG.warn("Application Booted");
-}
+app.config.use(function(c) {
+  c['magicScope'] = true;
+  c['reloadTemplates'] = true;
+});
+
+
+var root = require('root.js');
+var posts = require('posts.js');
+
+app.mount('root', '/', root);
+app.mount('posts', '/posts', posts);
+
+app.boot({port: 8000});

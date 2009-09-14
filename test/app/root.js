@@ -1,18 +1,14 @@
-exports.resource = function() {
-  get("/", function() {
-    if (params.second == "true")
-      return PASS;
-    
-    return "Welcome to Vroom!\n";
+exports.resource = new Vroom.PathResource(function() {
+  
+  get('/', function() {
+    status = 200;
+    addHeader('Content-Type', "text/plain");
+    return 'Hello World';
   });
   
-  get("/", function() {
-    return "Second Root\n";
+  get('/about', function() {
+    addHeader('Content-Type', "text/plain");
+    return "About this page.";
   });
   
-  get("/favicon.ico", function() {
-    status = 404;
-    sendHeader();
-    finish();
-  });
-}
+});
