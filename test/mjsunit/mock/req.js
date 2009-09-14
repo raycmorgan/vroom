@@ -5,6 +5,8 @@ exports.mock = function(opts) {
   req.method = opts.method || "GET";
   req.uri.query = opts.query;
   req.uri.path = opts.path || "";
+  req.uri.params = opts.params || {};
+  req.uri.host = opts.host || null;
   
   return req;
 }
