@@ -19,8 +19,10 @@ fully meet each goal.
 
 ### Routing
 
-Routing is achieved by a mix of pure path based routing
-(i.e. Sinatra), Merb routing and a simple mounting approach.
+Routing is provided by the individual resource type. Each resource
+type is built upon the Application mounting system built into
+Vroom. A default PathResource is included and provides a very
+flexible routing system based on Sinatra + Merb style routing.
 
 
 ### Usage
@@ -29,45 +31,45 @@ For a demo app see: `test/app/`
 
 Here is a totally simple example app
 
-    var vroom = require("lib/vroom.js");
+  require("lib/vroom.js");
 
-    var resource = function() {
-      get("/", function() {
-        return "Welcome to Vroom!";
-      });
-    
-      get("/person(/:name)", function(name) {
-        return "Hello: " + (name || "unknown");
-      });
-      
-      get("/stream", function() {
-        write("Hello ");
-        write("World!");
-        finish();
-      });
-    }
+  var resource = new Vroom.PathResource(function () { with (this) {
+  
+    get('/', function () {
+      return "Hello World";
+    });
+  
+    get('/person(/:name)', function (name) {
+      return "Hello: " + (name || "unknown");
+    });
+  
+    get('/stream', function () {
+      this.status = 200;
+      this.write("Hello ");
+      this.write("World!");
+      this.finish()
+    });
+  
+  }});
 
-    function onLoad() {
-      // Create a new Application
-      var app = vroom.createApp();
+  var app = new Vroom.Application();
 
-      // This is were we mount our resource from above
-      // we are going to mount this on "/"
-      app.mount("/", resource);
+  app.config.use(function (c) {
+    c['logLevel'] = 'DEBUG';
+  });
 
-      // Finally we start the application up
-      app.boot();
-    }
+  app.mount('root', '/', resource);
+  app.boot();
 
-Since the onLoad (mounting/booting/etc) is separate from
-the resources, this can (and usually is) be in its own
-file. See the test/app for a more detailed example with
-templates and such.
+Since the config/mounting/booting/etc is separate from the
+resources, each piece can be in its own file as you see fit.
+See the test/app for a more detailed example with templates
+and such.
 
 To boot that:
 
     $ node that-file.js
 
-Note that you need [Node.js](http://tinyclouds.org/node/) installed prior to running the
-application.
+Note that you need [Node.js](http://tinyclouds.org/node/) installed
+prior to running the application.
 

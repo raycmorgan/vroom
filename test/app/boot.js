@@ -6,7 +6,6 @@ var app = new Vroom.Application();
 Vroom.Config.printOptions();
 
 app.config.use(function(c) {
-  c['magicScope'] = true;
   c['viewDir'] = node.path.dirname(__filename);
   c['reloadTemplates'] = true;
 });
