@@ -31,35 +31,35 @@ For a demo app see: `test/app/`
 
 Here is a totally simple example app
 
-  require("lib/vroom.js");
+    require("lib/vroom.js");
 
-  var resource = new Vroom.PathResource(function () { with (this) {
+    var resource = new Vroom.PathResource(function () { with (this) {
   
-    get('/', function () {
-      return "Hello World";
+      get('/', function () {
+        return "Hello World";
+      });
+  
+      get('/person(/:name)', function (name) {
+        return "Hello: " + (name || "unknown");
+      });
+  
+      get('/stream', function () {
+        this.status = 200;
+        this.write("Hello ");
+        this.write("World!");
+        this.finish()
+      });
+  
+    }});
+
+    var app = new Vroom.Application();
+
+    app.config.use(function (c) {
+      c['logLevel'] = 'DEBUG';
     });
-  
-    get('/person(/:name)', function (name) {
-      return "Hello: " + (name || "unknown");
-    });
-  
-    get('/stream', function () {
-      this.status = 200;
-      this.write("Hello ");
-      this.write("World!");
-      this.finish()
-    });
-  
-  }});
 
-  var app = new Vroom.Application();
-
-  app.config.use(function (c) {
-    c['logLevel'] = 'DEBUG';
-  });
-
-  app.mount('root', '/', resource);
-  app.boot();
+    app.mount('root', '/', resource);
+    app.boot();
 
 Since the config/mounting/booting/etc is separate from the
 resources, each piece can be in its own file as you see fit.
