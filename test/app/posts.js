@@ -1,4 +1,4 @@
-exports.resource = new Vroom.PathResource(function() {
+exports.resource = new Vroom.PathResource(function() { with (this) {
   
   get('/', function() {
     return "Post Index.";
@@ -6,7 +6,7 @@ exports.resource = new Vroom.PathResource(function() {
   
   get('/all', function() {
     this.foo = "<p>Hello World.</p>";
-    ejs("posts/all");
+    this.ejs("posts/all");
   });
   
-});
+}});

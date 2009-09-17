@@ -1,8 +1,8 @@
-exports.resource = new Vroom.PathResource(function() {
+exports.resource = new Vroom.PathResource(function() { with (this) {
   
   get('/', function() {
-    status = 200;
-    addHeader('Content-Type', "text/plain");
+    this.status = 200;
+    this.addHeader('Content-Type', "text/plain");
     return 'Hello World';
   });
   
@@ -11,4 +11,4 @@ exports.resource = new Vroom.PathResource(function() {
     return "About this page.";
   });
   
-});
+}});
