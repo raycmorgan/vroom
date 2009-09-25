@@ -7,7 +7,7 @@ exports.resource = new Vroom.PathResource(function() { with (this) {
   });
   
   get('/about', function() {
-    addHeader('Content-Type', "text/plain");
+    this.addHeader('Content-Type', "text/plain");
     return "About this page.";
   });
   
