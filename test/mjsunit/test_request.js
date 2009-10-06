@@ -1,4 +1,3 @@
-include("mjsunit.js");
 var helpers = require("../test_helpers.js");
 var assertMatch = helpers.assertMatch;
 
@@ -8,8 +7,11 @@ var MockRes = require("mock/res.js");
 
 exports.beforeEach = function () {
   if (Vroom) {
+    var fullpath = node.path.join(node.path.dirname(__filename), "../../lib/vroom.js");
+    
     delete Vroom;
-    require('../lib/vroom.js');
+    delete node.Module.cache[fullpath];
+    require('../../lib/vroom.js');
   }
   
   this.req = MockReq.mock({
@@ -51,7 +53,7 @@ exports.tests = [
   },
   
   function test_status() {
-    assertMatch(404, this.request.status);
+    assertMatch(null, this.request.status);
     this.request.status = "500";
     assertMatch(500, this.request.status);
     this.request.status = 200;

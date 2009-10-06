@@ -1,10 +1,8 @@
-require("../lib/vroom.js");
+node.mixin(require("/mjsunit.js"));
 
-(function() {
-  exports.assertMatch = function assertMatch(o1, o2) {
-    assertEquals(
-      JSON.stringify(o1),
-      JSON.stringify(o2)
-    );
-  }
-})();
+exports.assertMatch = function assertMatch(o1, o2) {
+  assertEquals(
+    JSON.stringify(o1),
+    JSON.stringify(o2)
+  );
+}

@@ -1,4 +1,3 @@
-include("mjsunit.js");
 var helpers = require("../test_helpers.js");
 var assertMatch = helpers.assertMatch;
 
@@ -8,8 +7,11 @@ var MockLog = require("mock/logger.js");
 
 exports.beforeEach = function () {
   if (Vroom) {
+    var fullpath = node.path.join(node.path.dirname(__filename), "../../lib/vroom.js");
+    
     delete Vroom;
-    require('../lib/vroom.js');
+    delete node.Module.cache[fullpath];
+    require('../../lib/vroom.js');
   }
   
   this.req = MockReq.mock();

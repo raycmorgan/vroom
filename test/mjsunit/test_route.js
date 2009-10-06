@@ -1,4 +1,3 @@
-include("mjsunit.js");
 var helpers = require("../test_helpers.js");
 var assertMatch = helpers.assertMatch;
 
