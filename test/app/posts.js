@@ -9,4 +9,9 @@ exports.resource = new Vroom.PathResource(function(r) {
     this.ejs("posts/all");
   });
   
+  r.get('/boom', function () {
+    throw(Vroom.Exceptions.InternalServerError);
+    return "Not going to get here.";
+  });
+  
 });

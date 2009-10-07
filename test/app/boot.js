@@ -13,8 +13,10 @@ app.config.use(function(c) {
 
 var root = require('root.js');
 var posts = require('posts.js');
+var exceptions = require('exceptions.js');
 
 app.mount('root', '/', root);
 app.mount('posts', '/posts', posts);
+app.mountExceptionHandler(exceptions);
 
 app.boot({port: 8000});
