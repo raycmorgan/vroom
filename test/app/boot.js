@@ -5,7 +5,7 @@ var app = new Vroom.Application();
 
 Vroom.Config.printOptions();
 
-app.config.use(function(c) {
+app.config.use(function (c) {
   c['viewDir'] = node.path.dirname(__filename);
   c['reloadTemplates'] = true;
 });

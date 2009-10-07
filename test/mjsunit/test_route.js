@@ -18,6 +18,6 @@ var routeMap = [
   ]}
 ];
 
-routeMap.forEach(function(r) {
+routeMap.forEach(function (r) {
   assertMatch(r.compiled, Route.compile(r.route));
 });

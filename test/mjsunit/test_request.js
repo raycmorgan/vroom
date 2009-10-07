@@ -70,7 +70,7 @@ exports.tests = [
   
   function test_sendHeader() {
     var resSendHeaderCalled = false;
-    this.res.sendHeader = function(status, header) {
+    this.res.sendHeader = function (status, header) {
       assertMatch(200, status);
       assertMatch({'Content-Type': 'text/html'}, header);
       resSendHeaderCalled = true;
@@ -88,7 +88,7 @@ exports.tests = [
   
   function test_write() {
     var resSendBodyCalled = false;
-    this.res.sendBody = function(str) {
+    this.res.sendBody = function (str) {
       assertMatch("Hello World", str);
       resSendBodyCalled = true;
     };

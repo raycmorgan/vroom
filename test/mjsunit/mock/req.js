@@ -1,4 +1,4 @@
-exports.mock = function(opts) {
+exports.mock = function (opts) {
   opts = opts || {};
   var req = {uri: {}};
   

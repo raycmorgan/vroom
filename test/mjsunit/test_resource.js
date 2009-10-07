@@ -22,7 +22,7 @@ exports.beforeEach = function () {
 exports.tests = [
   function test_captured() {
     var resource = new Vroom.PathResource(function () { with (this) {
-      get("/:name/:id", function(id, name) {        
+      get("/:name/:id", function (id, name) {        
         assertMatch("ray", name);
         assertMatch("ray", this.captured.name);
         assertMatch("12", id);
@@ -39,15 +39,15 @@ exports.tests = [
   
   function test_routes() {
     var resource = new Vroom.PathResource(function () { with (this) {
-      get("/", function() {
+      get("/", function () {
         return "/";
       });
       
-      get("/:id", function() {
+      get("/:id", function () {
         return "/:id";
       });
       
-      get("/post/:year(/:month(/:day))", function(year, month, day) {
+      get("/post/:year(/:month(/:day))", function (year, month, day) {
         if (day)
           return "/post/:year/:month/:day";
         else if (month)
