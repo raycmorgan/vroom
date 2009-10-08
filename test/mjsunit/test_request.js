@@ -61,18 +61,18 @@ exports.tests = [
   },
   
   function test_header() {
-    assertMatch({}, this.request.header);
+    assertMatch([], this.request.header);
     this.request.addHeader('Content-Type', 'text/html');
-    assertMatch({'Content-Type': 'text/html'}, this.request.header);
+    assertMatch([['Content-Type', 'text/html']], this.request.header);
     this.request.removeHeader('Content-Type');
-    assertMatch({}, this.request.header);
+    assertMatch([], this.request.header);
   },
   
   function test_sendHeader() {
     var resSendHeaderCalled = false;
     this.res.sendHeader = function (status, header) {
       assertMatch(200, status);
-      assertMatch({'Content-Type': 'text/html'}, header);
+      assertMatch([['Content-Type', 'text/html']], header);
       resSendHeaderCalled = true;
     };
     
