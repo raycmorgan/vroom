@@ -105,6 +105,12 @@ exports.tests = [
     this.request.sendHeader();
     this.request.finish();
     assertTrue(true, this.request.finished);
+  },
+  
+  function test_cookie() {
+    this.request.setCookie('node','vroom');
+    this.sendHeader();
+    assertMatch('vroom', this.request.cookie.node);
   }
   
 ];
