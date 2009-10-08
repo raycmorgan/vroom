@@ -111,6 +111,19 @@ exports.tests = [
     this.request.setCookie('node','vroom');
     this.sendHeader();
     assertMatch('vroom', this.request.cookie.node);
-  }
+  },
   
+  function test_setCookie() {
+    this.request.deleteCookie('node');
+    this.request.setCookie('node','vroom');
+    this.sendHeader();
+    assertMatch('vroom', this.request.cookie.node);
+  },
+  
+  function test_deleteCookie() {
+    this.request.setCookie('node','vroom');
+    this.request.deleteCookie('node');
+    this.sendHeader();
+    assertMatch(undefined, this.request.cookie.node);
+  }
 ];
