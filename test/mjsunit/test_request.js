@@ -105,6 +105,15 @@ exports.tests = [
     this.request.sendHeader();
     this.request.finish();
     assertTrue(true, this.request.finished);
-  }
+  },
   
+  function test_getCookie() {
+    this.req.headers = { Cookie : 'vroom=node' };
+    assertMatch('node', this.request.cookie.vroom);
+    
+    this.req.headers = { Cookie : 'vroom=node; ray=morgan; ian=myers' };
+    assertMatch('node', this.request.cookie.vroom);
+    assertMatch('morgan', this.request.cookie.ray);
+    assertMatch('myers', this.request.cookie.ian);
+  }
 ];
