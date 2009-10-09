@@ -107,23 +107,13 @@ exports.tests = [
     assertTrue(true, this.request.finished);
   },
   
-  function test_cookie() {
-    this.request.setCookie('node','vroom');
-    this.sendHeader();
-    assertMatch('vroom', this.request.cookie.node);
-  },
-  
-  function test_setCookie() {
-    this.request.deleteCookie('node');
-    this.request.setCookie('node','vroom');
-    this.sendHeader();
-    assertMatch('vroom', this.request.cookie.node);
-  },
-  
-  function test_deleteCookie() {
-    this.request.setCookie('node','vroom');
-    this.request.deleteCookie('node');
-    this.sendHeader();
-    assertMatch(undefined, this.request.cookie.node);
+  function test_getCookie() {
+    this.req.headers = { Cookie : 'vroom=node' };
+    assertMatch('node', this.request.cookie.vroom);
+    
+    this.req.headers = { Cookie : 'vroom=node; ray=morgan; ian=myers' };
+    assertMatch('node', this.request.cookie.vroom);
+    assertMatch('morgan', this.request.cookie.ray);
+    assertMatch('myers', this.request.cookie.ian);
   }
 ];
