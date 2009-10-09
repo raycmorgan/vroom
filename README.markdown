@@ -68,6 +68,27 @@ resources, each piece can be in its own file as you see fit.
 See the test/app for a more detailed example with templates
 and such.
 
+Another thing to see is that Vroom resources are simply functions.
+This application will work as you would expect:
+
+    var Vroom = require("lib/vroom.js");
+    
+    var app = new Vroom.Application();
+    
+    app.mount('stream', '/stream', function () {
+      this.status = 200;
+      this.sendHeader();
+      this.write("Hello ");
+      this.write("World!");
+      this.finish();
+    });
+    
+    app.mount('root', '/', function () {
+      return "Hello World";
+    });
+    
+    app.boot();
+
 To boot that:
 
     $ node that-file.js
