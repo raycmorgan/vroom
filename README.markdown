@@ -31,25 +31,27 @@ For a demo app see: `test/app/`
 
 Here is a totally simple example app
 
-    require("lib/vroom.js");
+    var Vroom = require("lib/vroom.js");
+    var PathResource = require("lib/vroom/path_resource.js");
 
-    var resource = new Vroom.PathResource(function (r) {
-  
+    var resource = new PathResource(function (r) {
+
       r.get('/', function () {
         return "Hello World";
       });
-  
+
       r.get('/person(/:name)', function (name) {
         return "Hello: " + (name || "unknown");
       });
-  
+
       r.get('/stream', function () {
         this.status = 200;
+        this.sendHeader();
         this.write("Hello ");
         this.write("World!");
         this.finish()
       });
-  
+
     });
 
     var app = new Vroom.Application();
