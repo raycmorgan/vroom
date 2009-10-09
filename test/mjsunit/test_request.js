@@ -115,5 +115,28 @@ exports.tests = [
     assertMatch('node', this.request.cookie.vroom);
     assertMatch('morgan', this.request.cookie.ray);
     assertMatch('myers', this.request.cookie.ian);
+    
+    this.req.headers = {};
+    assertMatch(undefined, this.request.cookie.vroom)
+  },
+  
+  function test_setCookie() {
+    this.res.sendHeader = function (status, header) {
+      assertMatch([['Set-Cookie', 'vroom=node; path=/; domain=localhost']], header);
+    };
+    
+    this.request.status = 200;
+    this.request.setCookie('vroom', 'node', { path : '/', domain : 'localhost' });
+    this.request.sendHeader();
+  },
+  
+  function test_deleteCookie() {
+    this.res.sendHeader = function (status, header) {
+      assertMatch([['Set-Cookie', 'vroom=null; expires=Thu, 2 Aug 2001 20:47:11 UTC']], header);
+    };
+    
+    this.request.status = 200;
+    this.request.deleteCookie('vroom');
+    this.request.sendHeader();
   }
 ];
