@@ -1,5 +1,6 @@
-require('../../lib/vroom.js');
-require('../../lib/vroom/plugin/ejs.js');
+var Vroom = require('../../lib/vroom.js');
+Vroom.installPlugin(require('../../lib/vroom/plugin/ejs.js'));
+
 
 var app = new Vroom.Application();
 

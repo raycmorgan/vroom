@@ -6,13 +6,7 @@ var MockReq = require("mock/req.js");
 var MockRes = require("mock/res.js");
 
 exports.beforeEach = function () {
-  if (Vroom) {
-    var fullpath = node.path.join(node.path.dirname(__filename), "../../lib/vroom.js");
-    
-    delete Vroom;
-    delete node.Module.cache[fullpath];
-    require('../../lib/vroom.js');
-  }
+  var Vroom = require('../../lib/vroom.js');
   
   this.req = MockReq.mock({
     path: "/people",

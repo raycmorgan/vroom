@@ -1,4 +1,6 @@
-exports.resource = new Vroom.PathResource(function (r) {
+var PathResource = require('../../lib/vroom/path_resource.js');
+
+exports.resource = new PathResource(function (r) {
   
   r.get('/', function () {
     this.status = 200;

@@ -1,5 +1,4 @@
 node.mixin(require("/mjsunit.js"));
-require("../lib/vroom.js");
 
 var rootPath = "./" + node.path.dirname(__filename).replace(node.cwd(), "") + "/mjsunit/";
 var contents = node.fs.readdir(rootPath).wait();

@@ -1,3 +1,4 @@
+var PathResource = require("../../lib/vroom/path_resource.js");
 var helpers = require("../test_helpers.js");
 var assertMatch = helpers.assertMatch;
 
@@ -6,13 +7,7 @@ var MockRes = require("mock/res.js");
 var MockLog = require("mock/logger.js");
 
 exports.beforeEach = function () {
-  if (Vroom) {
-    var fullpath = node.path.join(node.path.dirname(__filename), "../../lib/vroom.js");
-    
-    delete Vroom;
-    delete node.Module.cache[fullpath];
-    require('../../lib/vroom.js');
-  }
+  var Vroom = require('../../lib/vroom.js');
   
   this.req = MockReq.mock();
   this.res = MockRes.mock();
@@ -21,7 +16,7 @@ exports.beforeEach = function () {
 
 exports.tests = [
   function test_captured() {
-    var resource = new Vroom.PathResource(function () { with (this) {
+    var resource = new PathResource(function () { with (this) {
       get("/:name/:id", function (id, name) {        
         assertMatch("ray", name);
         assertMatch("ray", this.captured.name);
@@ -38,7 +33,7 @@ exports.tests = [
   },
   
   function test_routes() {
-    var resource = new Vroom.PathResource(function () { with (this) {
+    var resource = new PathResource(function () { with (this) {
       get("/", function () {
         return "/";
       });
