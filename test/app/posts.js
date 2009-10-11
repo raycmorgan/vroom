@@ -12,7 +12,7 @@ exports.resource = new PathResource(function (r) {
   });
   
   r.get('/boom', function () {
-    throw(Vroom.Exceptions.InternalServerError);
+    throw(this.Exceptions.InternalServerError("The app went boom!"));
     return "Not going to get here.";
   });
   
