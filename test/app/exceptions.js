@@ -12,9 +12,9 @@ exports.handlers = {
 
 function logError(request, e) {
   if (e.stack) {
-    request.LOG.error(request.path + "\n" + e.stack + "\n\n");
+    request.LOG.error(request.path + "\n" + e.stack + "\n");
   } else if (e.message) {
-    request.LOG.error(request.path + " -- " + e.message + "\n");
+    request.LOG.error(request.path + " -- " + e.message);
   } else {
     request.LOG.error(request.path + "--" + JSON.stringify(e));
   }
