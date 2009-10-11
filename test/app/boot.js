@@ -18,6 +18,11 @@ var exceptions = require('exceptions.js');
 
 app.mount('root', '/', root);
 app.mount('posts', '/posts', posts);
+
+app.mount('users', /\/users\/(.+)\/?/, function (name) {
+  return "Users: " + name;
+});
+
 app.mountExceptionHandler(exceptions);
 
 app.boot({port: 8000});
