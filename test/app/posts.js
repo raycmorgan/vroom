@@ -16,4 +16,13 @@ exports.resource = new PathResource(function (r) {
     return "Not going to get here.";
   });
   
+  r.get('/new', function () {
+    this.status = 200;
+    this.ejs('posts/new');
+  });
+  
+  r.post('/', function () {
+    return "POST to /post/";
+  });
+  
 });
