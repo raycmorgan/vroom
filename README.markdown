@@ -31,8 +31,8 @@ For a demo app see: `test/app/`
 
 Here is a totally simple example app
 
-    var Vroom = require("lib/vroom.js");
-    var PathResource = require("lib/vroom/path_resource.js");
+    var Vroom = require("./lib/vroom");
+    var PathResource = require("./lib/vroom/path_resource");
 
     var resource = new PathResource(function (r) {
 
@@ -71,7 +71,7 @@ and such.
 Another thing to see is that Vroom resources are simply functions.
 This application will work as you would expect:
 
-    var Vroom = require("lib/vroom.js");
+    var Vroom = require("./lib/vroom");
     
     var app = new Vroom.Application();
     
