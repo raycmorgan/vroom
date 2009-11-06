@@ -1,12 +1,12 @@
-var helpers = require("../test_helpers.js");
+var helpers = require("../test_helpers");
 var assertMatch = helpers.assertMatch;
 
 // Setup the Mocks
-var MockReq = require("mock/req.js");
-var MockRes = require("mock/res.js");
+var MockReq = require("./mock/req");
+var MockRes = require("./mock/res");
 
 exports.beforeEach = function () {
-  var Vroom = require('../../lib/vroom.js');
+  var Vroom = require('../../lib/vroom');
   
   this.req = MockReq.mock({
     path: "/people",

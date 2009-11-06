@@ -1,7 +1,7 @@
-var helpers = require("../test_helpers.js");
+var helpers = require("../test_helpers");
 var assertMatch = helpers.assertMatch;
 
-var Route = require("../../lib/vroom/path_resource/route.js");
+var Route = require("../../lib/vroom/path_resource/route");
 
 var routeMap = [
   { route: "/", compiled: [{route: "/^\\/?\\??$/", params: {}}] },

@@ -1,4 +1,4 @@
-node.mixin(require("/mjsunit.js"));
+process.mixin(require("mjsunit"));
 
 exports.assertMatch = function assertMatch(o1, o2) {
   assertEquals(

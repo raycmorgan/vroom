@@ -1,5 +1,5 @@
-var helpers = require('../test_helpers.js');
-var params = require("../../lib/vroom/plugin/nested_params.js");
+var helpers = require('../test_helpers');
+var params = require("../../lib/vroom/plugin/nested_params");
 
 var matchMap = [
   [ "foo=bar", {foo: 'bar'} ],

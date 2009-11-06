@@ -1,13 +1,13 @@
-var PathResource = require("../../lib/vroom/path_resource.js");
-var helpers = require("../test_helpers.js");
+var PathResource = require("../../lib/vroom/path_resource");
+var helpers = require("../test_helpers");
 var assertMatch = helpers.assertMatch;
 
-var MockReq = require("mock/req.js");
-var MockRes = require("mock/res.js");
-var MockLog = require("mock/logger.js");
+var MockReq = require("./mock/req");
+var MockRes = require("./mock/res");
+var MockLog = require("./mock/logger");
 
 exports.beforeEach = function () {
-  var Vroom = require('../../lib/vroom.js');
+  var Vroom = require('../../lib/vroom');
   
   this.req = MockReq.mock();
   this.res = MockRes.mock();

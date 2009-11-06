@@ -1,4 +1,4 @@
-var PathResource = require('../../lib/vroom/path_resource.js');
+var PathResource = require('../../lib/vroom/path_resource');
 
 exports.resource = new PathResource(function (r) {
   

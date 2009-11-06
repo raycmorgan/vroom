@@ -1,18 +1,23 @@
-node.mixin(require("/mjsunit.js"));
+var path  = require('path');
+var posix = require('posix');
 
-var rootPath = "./" + node.path.dirname(__filename).replace(node.cwd(), "") + "/mjsunit/";
-var contents = node.fs.readdir(rootPath).wait();
+process.mixin(require("mjsunit"));
+
+process.chdir(path.dirname(__filename));
+
+var rootPath = path.join(process.cwd(), "/mjsunit/");
+var contents = posix.readdir(rootPath).wait();
 var tests = [];
 var successful = 0;
 var errors = [];
 
-node.stdio.writeError("Running Vroom Test Suite\n\n");
+process.stdio.writeError("Running Vroom Test Suite\n\n");
 
 contents.forEach(function (filename) {
   file = rootPath + filename;
-  var stat = node.fs.stat(file).wait();
+  var stat = posix.stat(file).wait();
   if (stat.isFile() && /^test_/.exec(filename)) {
-    tests.push(require("mjsunit/" + filename));
+    tests.push(require(rootPath + filename.replace(/\.js$/, "")));
   }
 });
 
@@ -36,10 +41,10 @@ tests.forEach(function (t) {
           if (typeof(t) == "function") {
             t();
           }
-          node.stdio.writeError(".");
+          green(".");
           successful++;
         } catch (e) {
-          node.stdio.writeError("f");
+          red("f");
           errors.push(e);
         }
       });
@@ -49,19 +54,35 @@ tests.forEach(function (t) {
 
 process.addListener('exit', function () {
   printErrors(errors);
-  node.stdio.writeError("\n\n" + successful + " Passed, " + errors.length + " Failures\n");
+  write("\n\n")
+  if (successful) green(successful + " Passed");
+  if (successful && errors.length) write(", ");
+  if (errors.length) red(errors.length + " Failures");
+  write("\n");
 });
 
 function printErrors(errors) {
   for (var i = 0; i < errors.length; i++) {
     var e = errors[i];
-    node.stdio.writeError("\n\n");
+    write("\n\n");
     if (e.stack) {
-      node.stdio.writeError(e.stack);
+      write(e.stack);
     } else if (e.message) {
-      node.stdio.writeError(e.message);
+      write(e.message);
     } else {
-      node.stdio.writeError(e);
+      write(e);
     }
   }
+}
+
+function write(str) {
+  process.stdio.writeError(str);
+}
+
+function green(str) {
+  process.stdio.writeError('\033[32m' + str + '\033[0m');
+}
+
+function red(str) {
+  process.stdio.writeError('\033[31m' + str + '\033[0m');
 }

@@ -1,5 +1,6 @@
-var Vroom = require('../../lib/vroom.js');
-Vroom.installPlugin(require('../../lib/vroom/plugin/ejs.js'));
+var path  = require('path');
+var Vroom = require('../../lib/vroom');
+Vroom.installPlugin(require('../../lib/vroom/plugin/ejs'));
 
 
 var app = new Vroom.Application();
@@ -7,14 +8,14 @@ var app = new Vroom.Application();
 Vroom.Config.printOptions();
 
 app.config.use(function (c) {
-  c['viewDir'] = node.path.dirname(__filename);
+  c['viewDir'] = path.dirname(__filename);
   c['reloadTemplates'] = true;
 });
 
 
-var root = require('root.js');
-var posts = require('posts.js');
-var exceptions = require('exceptions.js');
+var root = require('./root');
+var posts = require('./posts');
+var exceptions = require('./exceptions');
 
 app.mount('root', '/', root);
 app.mount('posts', '/posts', posts);
